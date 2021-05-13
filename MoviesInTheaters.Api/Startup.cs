@@ -54,7 +54,6 @@ namespace MoviesInTheaters.Api
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
             
-            services.AddMemoryCache();
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGenNewtonsoftSupport();
         }

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using CinemasInTheaters.Shared.Services;
 using Microsoft.AspNetCore.Mvc;
 using MoviesInTheaters.Data.Entities;
 using MoviesInTheaters.Data.Enums;
+using MoviesInTheaters.Shared.DTO;
 using MoviesInTheaters.Shared.Utils;
 
 namespace MoviesInTheaters.Mvc.Controllers
@@ -13,10 +15,12 @@ namespace MoviesInTheaters.Mvc.Controllers
     public class CinemaController : Controller
     {
         private readonly ICinemaService _cinemaService;
+        private readonly IMapper _mapper;
 
-        public CinemaController(ICinemaService cinemaService)
+        public CinemaController(ICinemaService cinemaService, IMapper mapper)
         {
             _cinemaService = cinemaService;
+            _mapper = mapper;
 
         }
 
@@ -26,59 +30,67 @@ namespace MoviesInTheaters.Mvc.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var CinemaList = await _cinemaService.GetAllCinemas();
-            return View(CinemaList);
+            var cinemaList = await _cinemaService.GetAllCinemas();
+            var cinemaDTOList = _mapper.Map<IEnumerable<Cinema>, IEnumerable<CinemaDTO>>(cinemaList);
+            return View(cinemaDTOList);
         }
 
         public async Task<ActionResult> Details(long id)
         {
-            return View(await _cinemaService.GetCinemaById(id));
+            var cinema = await _cinemaService.GetCinemaById(id);
+            var cinemaDTO = _mapper.Map<Cinema, CinemaDTO>(cinema);
+            return View(cinemaDTO);
         }
 
         public ActionResult Create()
         {
+            var model = new CinemaCreateDTO();
             FillStandardViewData();
-            return View();
+            return View(model);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Cinema Cinema)
+        public async Task<ActionResult> Create(CinemaCreateDTO cinemaDTO)
         {
             if (ModelState.IsValid)
             {
-                await _cinemaService.CreateCinema(Cinema);
+                var cinema = _mapper.Map<CinemaCreateDTO, Cinema>(cinemaDTO);
+                await _cinemaService.CreateCinema(cinema);
                 return RedirectToAction("Index");
             }
 
-            return View(Cinema);
+            return View(cinemaDTO);
         }
 
         public async Task<ActionResult> Edit(long id)
         {
             FillStandardViewData();
-            var Cinema = await _cinemaService.GetCinemaById(id);
-            return View(Cinema);
+            var cinema = await _cinemaService.GetCinemaById(id);
+            var cinemaDTO = _mapper.Map<Cinema, CinemaUpdateDTO>(cinema);
+            return View(cinemaDTO);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Cinema Cinema)
+        public async Task<ActionResult> Edit(CinemaUpdateDTO cinemaDTO)
         {
             if (ModelState.IsValid)
             {
-                 _cinemaService.UpdateCinema(Cinema);
+                var cinema = _mapper.Map<CinemaUpdateDTO, Cinema>(cinemaDTO);
+                await _cinemaService.UpdateCinema(cinema);
                 return RedirectToAction("Index");
             }
-            return View(Cinema);
+            return View(cinemaDTO);
         }
 
         public async Task<ActionResult> Delete(long id)
         {
-            var Cinema = await _cinemaService.GetCinemaById(id);
-            return View(Cinema);
+            var cinema = await _cinemaService.GetCinemaById(id);
+            var cinemaDTO = _mapper.Map<Cinema, CinemaUpdateDTO>(cinema);
+            return View(cinemaDTO);
         }
 
         [HttpPost, ActionName("Delete")]

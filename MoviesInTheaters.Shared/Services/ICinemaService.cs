@@ -13,7 +13,7 @@ namespace CinemasInTheaters.Shared.Services
         Task<Cinema> GetCinemaById(long id);
         Task<IEnumerable<Cinema>> GetCinemasByName(string name);
         Task<Cinema> CreateCinema(Cinema newCinema);
-        Cinema UpdateCinema(Cinema Cinema);
+        Task<Cinema> UpdateCinema(Cinema Cinema);
         Task<Cinema> DeleteCinema(Cinema Cinema);
     }
 }

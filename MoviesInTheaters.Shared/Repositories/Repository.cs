@@ -58,10 +58,10 @@ namespace MoviesInTheaters.Shared.Repositories
             return true;
         }
 
-        public bool Update(TEntity entity)
+        public async Task<bool> Update(TEntity entity)
         {
             Context.Set<TEntity>().Update(entity);
-            return true;
+            return await Task.FromResult(true);
         }
     }
 }

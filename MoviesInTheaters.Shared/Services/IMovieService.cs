@@ -12,9 +12,9 @@ namespace MoviesInTheaters.Shared.Services
         Task<IEnumerable<Movie>> GetAllMovies();
         Task<IEnumerable<Movie>> GetActiveMovies();
         Task<IEnumerable<Movie>> GetMoviesByName(string name);
-        Task<Movie> GetMovieById(int id);
+        Task<Movie> GetMovieById(long id);
         Task<Movie> CreateMovie(Movie newMovie);
-        Task UpdateMovie(Movie MovieToBeUpdated, Movie Movie);
-        Task<Movie> DeleteMovie(Movie Movie);
+        Task<Movie> UpdateMovie(Movie movie);
+        Task<Movie> DeleteMovie(Movie movie);
     }
 }

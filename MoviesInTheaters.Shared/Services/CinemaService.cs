@@ -50,10 +50,10 @@ namespace MoviesInTheaters.Shared.Services
             return await Task.FromResult(_unitOfWork.Cinemas.Find(_ => _.Name.Contains(name)));
         }
 
-        public Cinema UpdateCinema(Cinema Cinema)
+        public async Task<Cinema> UpdateCinema(Cinema Cinema)
         {
-            _unitOfWork.Cinemas.Update(Cinema);
-            _unitOfWork.CommitAsync();//TODO:???
+            await _unitOfWork.Cinemas.Update(Cinema);
+            await _unitOfWork.CommitAsync();
             return Cinema;
         }
     }

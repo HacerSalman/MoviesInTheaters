@@ -40,7 +40,7 @@ namespace MoviesInTheaters.Shared.Services
             return await _unitOfWork.Movies.GetAllAsync();
         }
 
-        public async Task<Movie> GetMovieById(int id)
+        public async Task<Movie> GetMovieById(long id)
         {
             return await _unitOfWork.Movies.GetByIdAsync(id);
         }
@@ -50,9 +50,11 @@ namespace MoviesInTheaters.Shared.Services
             return await Task.FromResult(_unitOfWork.Movies.Find(_ => _.Name.Contains(name)));
         }
 
-        public Task UpdateMovie(Movie MovieToBeUpdated, Movie Movie)
+        public async Task<Movie> UpdateMovie(Movie movie)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.Movies.Update(movie);
+            await _unitOfWork.CommitAsync();
+            return movie;
         }
     }
 }

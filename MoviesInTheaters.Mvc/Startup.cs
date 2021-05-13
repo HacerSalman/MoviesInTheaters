@@ -33,6 +33,7 @@ namespace MoviesInTheaters.Mvc
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICinemaService, CinemaService>();
             services.AddScoped<IMovieService, MovieService>();
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,10 +56,12 @@ namespace MoviesInTheaters.Mvc
             app.UseRouting();
 
             app.UseAuthorization();
-
+    
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Cinema}/{action=Index}");
             });
         }
     }

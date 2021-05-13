@@ -12,7 +12,7 @@ namespace MoviesInTheaters.Shared.Repositories
         Task<IEnumerable<TEntity>> GetAllAsync();
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
-        bool Update(TEntity entity);
+        Task<bool> Update(TEntity entity);
         Task AddAsync(TEntity entity);
         Task AddRangeAsync(IEnumerable<TEntity> entities);
         List<TEntity> GetAll();
