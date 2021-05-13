@@ -24,8 +24,9 @@ namespace MoviesInTheaters.Data.Context
 
             var statusConverter = EntityStatus.FluentInitAndSeed(modelBuilder);
             var movieTypeConverter = MovieType.FluentInitAndSeed(modelBuilder);
+            var movieDurationTypeConverter = MovieDurationType.FluentInitAndSeed(modelBuilder);
 
-            Entities.Movie.FluentInitAndSeed(modelBuilder, statusConverter, movieTypeConverter);
+            Entities.Movie.FluentInitAndSeed(modelBuilder, statusConverter, movieTypeConverter, movieDurationTypeConverter);
             Entities.Cinema.FluentInitAndSeed(modelBuilder, statusConverter);
             Entities.CinemaMovie.FluentInitAndSeed(modelBuilder, statusConverter);
 
