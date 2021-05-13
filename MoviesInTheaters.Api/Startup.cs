@@ -43,7 +43,7 @@ namespace MoviesInTheaters.Api
                 options.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
                     Title = "Movie App Info Service API",
-                    Version = "v1",
+                    Version = "v2",
                     Description = "All service for CRUD operations",
                 });
             });
@@ -77,7 +77,7 @@ namespace MoviesInTheaters.Api
                 endpoints.MapControllers();
             });
             app.UseSwagger();
-            app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "Movie App Services"));
+            app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v2/swagger.json", "Movie App Services"));
         }
     }
 }

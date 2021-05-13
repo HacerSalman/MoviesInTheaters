@@ -10,7 +10,6 @@ namespace MoviesInTheaters.Shared.DTO
         public long Id { get; set; }
         public long CreateTime { get; set; }
         public long UpdateTime { get; set; }
-
         public string Owner { get; set; }
         public string Modifier { get; set; }
         public string Description { get; set; }
