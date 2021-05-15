@@ -33,6 +33,7 @@ namespace MoviesInTheaters.Mvc
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICinemaService, CinemaService>();
             services.AddScoped<IMovieService, MovieService>();
+            services.AddScoped<ICinemaMovieService, CinemaMovieService>();
             services.AddAutoMapper(typeof(Startup));
         }
 
@@ -61,7 +62,7 @@ namespace MoviesInTheaters.Mvc
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Cinema}/{action=Index}");
+                    pattern: "{controller=CinemaMovie}/{action=Index}");
             });
         }
     }

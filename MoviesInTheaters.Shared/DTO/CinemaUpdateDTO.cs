@@ -11,5 +11,7 @@ namespace MoviesInTheaters.Shared.DTO
         public string Address { get; set; }
         public string Name { get; set; }
         public EntityStatus.Values Status { get; set; }
+        public long CreateTime { get; set; }
+        public string Owner { get; set; }
     }
 }

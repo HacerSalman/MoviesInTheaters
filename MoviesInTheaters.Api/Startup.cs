@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MoviesInTheaters.Api.Internal;
 using MoviesInTheaters.Data.Context;
 using MoviesInTheaters.Shared.Services;
 using MoviesInTheaters.Shared.UnitOfWork;
@@ -38,24 +39,21 @@ namespace MoviesInTheaters.Api
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICinemaService,CinemaService>();
             services.AddScoped<IMovieService, MovieService>();
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
-                {
-                    Title = "Movie App Info Service API",
-                    Version = "v2",
-                    Description = "All service for CRUD operations",
-                });
-            });
+            services.AddScoped<ICinemaMovieService, CinemaMovieService>();
 
-            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(new ResponseWrapperFilter());
+
+            }).AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver { NamingStrategy = new CamelCaseNamingStrategy() };
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
-            
+
+
             services.AddAutoMapper(typeof(Startup));
-            services.AddSwaggerGenNewtonsoftSupport();
+         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,8 +74,7 @@ namespace MoviesInTheaters.Api
             {
                 endpoints.MapControllers();
             });
-            app.UseSwagger();
-            app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v2/swagger.json", "Movie App Services"));
+    
         }
     }
 }

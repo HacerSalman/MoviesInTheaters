@@ -11,8 +11,8 @@ namespace MoviesInTheaters.Data.Context
 {
     public class MovieDbContext : DbContext
     {
-        public DbSet<Cinema> Cinema { get; set; }
-        public DbSet<Movie> Movie { get; set; }
+        public DbSet<Cinema> Cinemas { get; set; }
+        public DbSet<Movie> Movies { get; set; }
         public DbSet<CinemaMovie> CinemaMovies { get; set; }
         public MovieDbContext(DbContextOptions<MovieDbContext> options) : base(options)
         {

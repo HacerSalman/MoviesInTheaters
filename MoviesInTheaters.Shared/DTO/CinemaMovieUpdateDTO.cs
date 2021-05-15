@@ -5,17 +5,13 @@ using System.Text;
 
 namespace MoviesInTheaters.Shared.DTO
 {
-    public class MovieUpdateDTO
+    public class CinemaMovieUpdateDTO
     {
         public long Id { get; set; }
-        public string Description { get; set; }
-        public MovieType.Values Type { get; set; }
-        public double Rating { get; set; }
-        public string Name { get; set; }
-
-        public MovieDurationType.Values DurationType { get; set; }
-
-        public int Duration { get; set; }
+        public double Price { get; set; }
+        public double DiscountPrice { get; set; }
+        public long CinemaId { get; set; }
+        public long MovieId { get; set; }
         public EntityStatus.Values Status { get; set; }
         public long CreateTime { get; set; }
         public string Owner { get; set; }

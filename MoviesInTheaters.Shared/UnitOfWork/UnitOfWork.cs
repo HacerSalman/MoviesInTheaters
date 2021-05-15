@@ -12,6 +12,7 @@ namespace MoviesInTheaters.Shared.UnitOfWork
         private readonly MovieDbContext _context;
         private CinemaRepository _cinemaRepository;
         private MovieRepository _movieRepository;
+        private CinemaMovieRepository _cinemaMovieRepository;
 
         public UnitOfWork(MovieDbContext context)
         {
@@ -20,6 +21,7 @@ namespace MoviesInTheaters.Shared.UnitOfWork
         public IMovieRepository Movies => _movieRepository = _movieRepository ?? new MovieRepository(_context);
 
         public ICinemaRepository Cinemas => _cinemaRepository = _cinemaRepository ?? new CinemaRepository(_context);
+        public ICinemaMovieRepository CinemaMovies => _cinemaMovieRepository = _cinemaMovieRepository ?? new CinemaMovieRepository(_context);
 
         public async Task<int> CommitAsync()
         {

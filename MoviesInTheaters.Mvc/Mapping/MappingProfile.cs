@@ -18,6 +18,9 @@ namespace MoviesInTheaters.Mvc.Mapping
             CreateMap<Movie, MovieDTO>().ReverseMap();
             CreateMap<Movie, MovieUpdateDTO>().ReverseMap();
             CreateMap<Movie, MovieCreateDTO>().ReverseMap();
+            CreateMap<CinemaMovie, CinemaMovieDTO>().ReverseMap();
+            CreateMap<CinemaMovie, CinemaMovieUpdateDTO>().ReverseMap();
+            CreateMap<CinemaMovie, CinemaMovieCreateDTO>().ReverseMap();
 
         }
 

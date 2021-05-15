@@ -10,6 +10,7 @@ namespace MoviesInTheaters.Shared.UnitOfWork
     {
         ICinemaRepository Cinemas { get; }
         IMovieRepository Movies { get; }
+        ICinemaMovieRepository CinemaMovies { get; }
         Task<int> CommitAsync();
     }
 }

@@ -91,7 +91,7 @@ namespace MoviesInTheaters.Mvc.Controllers
         public async Task<ActionResult> Delete(long id)
         {
             var movie = await _movieService.GetMovieById(id);
-            var movieDTO = _mapper.Map<Movie, MovieUpdateDTO>(movie);
+            var movieDTO = _mapper.Map<Movie, MovieDTO>(movie);
             return View(movieDTO);
         }
 
