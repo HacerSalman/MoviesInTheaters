@@ -27,7 +27,7 @@ namespace MoviesInTheaters.Shared.Repositories
         {
             try
             {
-                return await Context.Movies.Where(_ => _.Name.Contains(name) && _.Status == EntityStatus.Values.ACTIVE).ToListAsync();
+                return await Context.Movies.AsNoTracking().Where(_ => _.Name.Contains(name) && _.Status == EntityStatus.Values.ACTIVE).ToListAsync();
             }
             catch (Exception)
             {

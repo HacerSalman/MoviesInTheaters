@@ -25,12 +25,12 @@ namespace MoviesInTheaters.Shared.Repositories
 
         public async Task<IEnumerable<CinemaMovie>> GetActiveCinemaMovieList()
         {
-            return await Context.CinemaMovies.Include(_ => _.Cinema).Include(_ => _.Movie).Where(_ => _.Status == EntityStatus.Values.ACTIVE && _.Cinema.Status == EntityStatus.Values.ACTIVE && _.Movie.Status == EntityStatus.Values.ACTIVE).ToListAsync();
+            return await Context.CinemaMovies.AsNoTracking().Include(_ => _.Cinema).Include(_ => _.Movie).Where(_ => _.Status == EntityStatus.Values.ACTIVE && _.Cinema.Status == EntityStatus.Values.ACTIVE && _.Movie.Status == EntityStatus.Values.ACTIVE).ToListAsync();
         }
 
         public async Task<IEnumerable<CinemaMovie>> GetCinemaMovieList()
         {
-            return await Context.CinemaMovies.Include(_ => _.Cinema).Include(_ => _.Movie).ToListAsync();
+            return await Context.CinemaMovies.AsNoTracking().Include(_ => _.Cinema).Include(_ => _.Movie).ToListAsync();
         }
     }
 }
