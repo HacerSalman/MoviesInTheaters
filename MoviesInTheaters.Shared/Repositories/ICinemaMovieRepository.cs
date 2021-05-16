@@ -12,5 +12,5 @@ namespace MoviesInTheaters.Shared.Repositories
         Task<IEnumerable<CinemaMovie>> GetCinemaMovieList();
         Task<IEnumerable<CinemaMovie>> GetActiveCinemaMovieList();
 
-}
+    }
 }

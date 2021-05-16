@@ -11,7 +11,7 @@ namespace MoviesInTheaters.Shared.Services
     {
         Task<IEnumerable<Movie>> GetAllMovies();
         Task<IEnumerable<Movie>> GetActiveMovies();
-        Task<IEnumerable<Movie>> GetMoviesByName(string name);
+        Task<List<Movie>> GetMoviesByName(string name);
         Task<Movie> GetMovieById(long id);
         Task<Movie> CreateMovie(Movie newMovie);
         Task<Movie> UpdateMovie(Movie movie);

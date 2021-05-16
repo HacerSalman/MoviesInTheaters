@@ -9,6 +9,7 @@ namespace MoviesInTheaters.Shared.Repositories
     public interface ICinemaRepository: IRepository<Cinema>
     {
         Task<Cinema> DeleteCinema(Cinema cinema);
+        Task<List<Cinema>> GetCinemasByName(string name);
 
     }
 }

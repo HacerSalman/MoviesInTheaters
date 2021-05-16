@@ -17,9 +17,10 @@ namespace MoviesInTheaters.Shared.Repositories
         {
             this.Context = context;
         }
-        public async Task AddAsync(TEntity entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
             await Context.Set<TEntity>().AddAsync(entity);
+            return entity;
         }
 
         public async Task AddRangeAsync(IEnumerable<TEntity> entities)

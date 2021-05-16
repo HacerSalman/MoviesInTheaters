@@ -11,7 +11,7 @@ namespace CinemasInTheaters.Shared.Services
         Task<IEnumerable<Cinema>> GetAllCinemas();
         Task<IEnumerable<Cinema>> GetActiveCinemas();
         Task<Cinema> GetCinemaById(long id);
-        Task<IEnumerable<Cinema>> GetCinemasByName(string name);
+        Task<List<Cinema>> GetCinemasByName(string name);
         Task<Cinema> CreateCinema(Cinema newCinema);
         Task<Cinema> UpdateCinema(Cinema Cinema);
         Task<Cinema> DeleteCinema(Cinema Cinema);

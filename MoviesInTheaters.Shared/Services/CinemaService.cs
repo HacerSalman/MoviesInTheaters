@@ -45,9 +45,9 @@ namespace MoviesInTheaters.Shared.Services
             return await _unitOfWork.Cinemas.GetByIdAsync(id);
         }
 
-        public async Task<IEnumerable<Cinema>> GetCinemasByName(string name)
+        public async Task<List<Cinema>> GetCinemasByName(string name)
         {
-            return await Task.FromResult(_unitOfWork.Cinemas.Find(_ => _.Name.Contains(name)));
+            return await _unitOfWork.Cinemas.GetCinemasByName(name);
         }
 
         public async Task<Cinema> UpdateCinema(Cinema Cinema)

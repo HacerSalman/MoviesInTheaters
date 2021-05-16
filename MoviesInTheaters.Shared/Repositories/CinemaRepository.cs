@@ -1,8 +1,10 @@
-﻿using MoviesInTheaters.Data.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using MoviesInTheaters.Data.Context;
 using MoviesInTheaters.Data.Entities;
 using MoviesInTheaters.Data.Enums;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,5 +23,16 @@ namespace MoviesInTheaters.Shared.Repositories
             return await Task.FromResult(cinema);
         }
 
+        public async Task<List<Cinema>> GetCinemasByName(string name)
+        {
+            try
+            {
+                return await Context.Cinemas.Where(_ => _.Name.Contains(name) && _.Status == EntityStatus.Values.ACTIVE).ToListAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

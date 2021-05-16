@@ -9,5 +9,6 @@ namespace MoviesInTheaters.Shared.Repositories
     public interface IMovieRepository: IRepository<Movie>
     {
         Task<Movie> DeleteMovie(Movie movie);
+        Task<List<Movie>> GetMoviesByName(string name);
     }
 }
