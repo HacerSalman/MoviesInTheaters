@@ -20,8 +20,8 @@ namespace MoviesInTheaters.Data.Context
         }
 
         public async Task<int> SaveChangesAsync()
-        {           
-            string currentUsername = "anonymous", ipAddress = "-", userAgent = "-", origin = "MovieDbContext";       
+        {
+            string currentUsername = "anonymous";   
        
             foreach (var entry in ChangeTracker.Entries())
             {
@@ -48,9 +48,9 @@ namespace MoviesInTheaters.Data.Context
             var movieTypeConverter = MovieType.FluentInitAndSeed(modelBuilder);
             var movieDurationTypeConverter = MovieDurationType.FluentInitAndSeed(modelBuilder);
 
-            Entities.Movie.FluentInitAndSeed(modelBuilder, statusConverter, movieTypeConverter, movieDurationTypeConverter);
-            Entities.Cinema.FluentInitAndSeed(modelBuilder, statusConverter);
-            Entities.CinemaMovie.FluentInitAndSeed(modelBuilder, statusConverter);
+            Movie.FluentInitAndSeed(modelBuilder, statusConverter, movieTypeConverter, movieDurationTypeConverter);
+            Cinema.FluentInitAndSeed(modelBuilder, statusConverter);
+            CinemaMovie.FluentInitAndSeed(modelBuilder, statusConverter);
 
         }
     }
